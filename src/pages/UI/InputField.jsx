@@ -7,13 +7,20 @@ const Input = styled.input`
   border-radius: 4px;
 `;
 
-export default function InputField({ name, type, data }) {
+export default function InputField({
+  name,
+  type,
+  placeholder,
+  data,
+  required,
+}) {
   return (
     <>
       <Input
         type={type}
         name={name}
-        placeholder={"Enter " + name}
+        required={required && required === true ? true : false}
+        placeholder={placeholder ? placeholder : "Enter " + name}
         defaultValue={data}
       />
     </>

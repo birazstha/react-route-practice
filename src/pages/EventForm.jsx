@@ -96,7 +96,6 @@ export async function storeUpdateAction({ request, params }) {
     url = `${url}/` + params.id;
   }
 
-  console.log(url);
 
   const response = await fetch(url, {
     method: request.method,

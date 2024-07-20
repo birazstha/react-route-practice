@@ -1,18 +1,16 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Root from './pages/Root';
 import Home from './pages/Home';
-import Event, {
-  loader as eventLoader,
-  action as deleteEventAction,
-} from './pages/Event';
+import Event, {eventLoader, deleteEventAction} from './pages/Event';
 import CreateEvent from './pages/CreateEvent';
 import EventDetail, {
-  loader as eventDetailLoader,
-  action as eventDeleteLoader,
+  eventDetailLoader,
+  eventDeleteLoader,
 } from './pages/EventDetail';
 import ErrorPage from './pages/ErrorPage';
-import EditEvent, {updateAction} from './pages/EditEvent';
+import EditEvent, {eventEditLoader} from './pages/EditEvent';
 import {storeUpdateAction} from './pages/EventForm';
+import Newsletter, {signupAction} from './pages/Newsletter/Newsletter';
 
 const router = createBrowserRouter ([
   {
@@ -38,16 +36,19 @@ const router = createBrowserRouter ([
           },
           {
             path: ':id',
-            loader: eventDetailLoader,
-            id: 'event-details',
+
             children: [
               {
                 index: true,
+                loader: eventDetailLoader,
+                id: 'event-details',
                 element: <EventDetail />,
                 action: eventDeleteLoader,
               },
               {
                 path: 'edit',
+                loader: eventEditLoader,
+                id: 'event-edit',
                 element: <EditEvent />,
                 action: storeUpdateAction,
               },
@@ -55,6 +56,8 @@ const router = createBrowserRouter ([
           },
         ],
       },
+
+      {path: '/newsletter', element: <Newsletter />, action: signupAction},
     ],
   },
 ]);

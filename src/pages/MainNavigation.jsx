@@ -1,16 +1,13 @@
 import { NavLink } from "react-router-dom";
 import { styled } from "styled-components";
+import Newsletter from "./Newsletter/NewsletterForm";
 
 const NavBar = styled.nav`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
   padding: 15px 40px;
   gap: 2rem;
-`;
-
-const Test = styled.div`
-  border: 1px solid red;
 `;
 
 const Link = styled(NavLink)`
@@ -19,7 +16,6 @@ const Link = styled(NavLink)`
   padding: 10px 15px;
   transition: background-color 0.3s ease, color 0.3s ease;
   border-radius: 5px;
-
 
   &.active {
     background-color: #0056b3;
@@ -36,8 +32,14 @@ const Link = styled(NavLink)`
 export default function MainNavigation() {
   return (
     <NavBar>
-      <Link to="">Home</Link>
-      <Link to="/events">Events</Link>
+      <div>
+        <Link to="">Home</Link>
+        <Link to="/events">Events</Link>
+        <Link to="/newsletter">Newsletter</Link>
+      </div>
+      <div>
+        <Newsletter />
+      </div>
     </NavBar>
   );
 }
